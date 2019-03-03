@@ -1,0 +1,90 @@
+Base URL: mariposa.jtinker.org/api
+
+Global:
+required: username, password
+(except for /user/create)
+
+publicity: string, can be either "public" or "private"
+location: three field array: [0]:name, [1]:longitude, [2]:latitude
+invited: array of usernames
+going: array of usernames
+id: uniquely generated, might find a way to fix this (don't use _id)
+
+Public:
+
+/public/view : list public events
+type: get
+required: none
+
+Events:
+
+/event/create
+type: post
+required: name, date
+optional: invited, going, publicity
+
+/event/delete
+type: delete
+required: id
+
+/event/view: returns events available to logged in user
+type: get
+required: none
+
+/update/details: if you only want to update one field, just use a get request to pass back the values of the other required fields
+type: post
+required: id, [new] name, [new] date
+optional: [new] location
+
+/update/invited: add
+type: post
+required: invited (array of usernames)
+
+/update/invited: delete
+type: delete
+required: invited (array of usernames)
+
+/update/going: add
+type: post
+required: going (array of usernames)
+
+/update/going: delete
+type: delete
+required: going (array of usernames)
+
+User:
+
+/user/create
+type: post
+required: name (display name), username, password, email
+
+/user/delete
+type: delete
+required: none
+
+/user/view
+type: get
+required: none
+
+Group (untested):
+
+/group/create
+type: post
+required: name
+optional: members (array of usernames)
+
+/group/view
+type: get
+required: id
+
+/group/delete
+type: delete
+required: id
+
+/group/update/member: add
+type: post
+required: members (array of usernames)
+
+/group/update/member: delete
+type: delete
+required: members (array of usernames)

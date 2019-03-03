@@ -1,0 +1,8 @@
+REQUIRES NODE version 10.0 or higher (brew update node)
+
+git clone https://github.com/tintinker/mashup.git
+npm install
+npm start
+
+
+
